@@ -40,4 +40,3 @@ class Ship:
         """Размещает корабль в центре нижней стороны экрана."""
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
-        

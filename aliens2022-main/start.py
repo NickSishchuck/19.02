@@ -62,8 +62,8 @@ class AlienInvasion:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
 
-    def stsrt_game(self):
-        """"""
+    def start_game(self):
+        """Запускает игру"""
         # Сброс игровой статистики и настроек
         self.settings.initialyze_dynamic_settings()
         self.stats.reset_stats()
@@ -85,22 +85,7 @@ class AlienInvasion:
         """Запускает новую игру при нажатии кнопки Play"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
-            # Сброс игровой статистики и настроек
-            self.settings.initialyze_dynamic_settings()
-            self.stats.reset_stats()
-            self.stats.game_active = True
-            self.sb.prep_score()
-
-            # Очистка пришельцев и снарядов
-            self.aliens.empty()
-            self.bullets.empty()
-
-            # Создание нового флота и размещение корабля в центре
-            self._create_fleet()
-            self.ship.center_ship()
-
-            # Указатель мыши скрывается
-            pygame.mouse.set_visible(False)
+            self.start_game()
 
     def _check_keydown_events(self, event):
         """Реагирует на нажати клавиш."""
@@ -113,7 +98,7 @@ class AlienInvasion:
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
         elif event.key == pygame.K_p:
-            self.stsrt_game()
+            self.start_game()
 
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
